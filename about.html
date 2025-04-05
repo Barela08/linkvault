@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HackifyPro | Nilesh Barela</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Important for mobile -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>About | Nilesh Barela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    html, body {
-      height: 100%;
-      font-family: 'Courier New', monospace;
+    body {
       background-color: #0d0d0d;
       color: #00ffcc;
-      overflow-x: hidden; /* only hide horizontal scroll */
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
       background: #111;
@@ -25,10 +25,9 @@
       font-size: 24px;
       font-weight: bold;
       border-bottom: 2px solid #00ffcc;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 10;
+    }
+    nav {
+      margin-top: 10px;
     }
     nav a {
       color: #00ffcc;
@@ -36,71 +35,47 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .scroll-area {
-      margin-top: 100px;
-      margin-bottom: 80px;
-      padding: 20px;
-      min-height: calc(100vh - 180px);
-      overflow-y: auto;
+    .container {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 30px 20px;
     }
-    .link-card {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      border: 1px solid #00ffcc;
-      border-radius: 10px;
-      padding: 15px 20px;
-      margin: 12px 0;
-      width: 90%;
-      max-width: 500px;
-      transition: transform 0.3s;
+    section {
+      max-width: 700px;
+      line-height: 1.6;
     }
-    .link-card:hover {
-      transform: scale(1.05);
-    }
-    .link-card i {
-      font-size: 26px;
-      margin-right: 15px;
-      color: #00ffcc;
-    }
-    .link-card a {
-      text-decoration: none;
-      color: #00ffcc;
-      font-size: 18px;
-      word-break: break-word;
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
     footer {
-      background: #111;
       text-align: center;
-      padding: 15px;
-      font-size: 14px;
+      background: #111;
+      color: #00ffcc;
+      padding: 20px;
       border-top: 2px solid #00ffcc;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
     }
     footer a {
       color: #00ffcc;
-      margin: 0 8px;
+      margin: 0 10px;
       text-decoration: none;
     }
-
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       header {
         font-size: 20px;
         padding: 15px 5px;
       }
-      .link-card {
-        padding: 12px 16px;
+      nav a {
+        font-size: 14px;
       }
-      .link-card i {
-        font-size: 22px;
+      h2 {
+        font-size: 20px;
       }
-      .link-card a {
-        font-size: 16px;
+      section {
+        padding: 0 10px;
       }
     }
   </style>
@@ -115,49 +90,24 @@
     </nav>
   </header>
 
-  <div class="scroll-area">
-
-    <div class="link-card">
-      <i class="fas fa-user"></i>
-      <a href="https://nilesh-delta.vercel.app/" target="_blank">My Portfolio</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-github"></i>
-      <a href="https://github.com/Barela08" target="_blank">GitHub</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-telegram"></i>
-      <a href="https://t.me/byte_snatcher" target="_blank">Nilesh Barela</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-instagram"></i>
-      <a href="https://instagram.com/_https_nilesh08" target="_blank">Nilesh Barela</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-youtube"></i>
-      <a href="https://youtube.com/@hackifypro" target="_blank">HackifyPro</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-telegram"></i>
-      <a href="https://t.me/hackifypro" target="_blank">HackifyPro Telegram</a>
-    </div>
-
-    <div class="link-card">
-      <i class="fab fa-instagram"></i>
-      <a href="https://instagram.com/hackifypro" target="_blank">HackifyPro Instagram</a>
-    </div>
-
+  <div class="container">
+    <section>
+      <h2>About Me</h2>
+      <p>
+        Hi, I'm <strong>Nilesh Barela</strong> — a passionate B.Tech Computer Science student from Maharashtra, specializing in Artificial Intelligence and Machine Learning.
+        I love ethical hacking, cyber security, and building powerful websites and apps.
+        I come from a humble farming background, and I believe in using tech to bring real change.
+      </p>
+      <p>
+        I'm the founder of <strong>HackifyPro</strong>, where I share tech tricks, hacking tips, and useful apps to help others explore the digital world safely and smartly.
+      </p>
+    </section>
   </div>
 
   <footer>
     Developed by Nilesh Barela <br>
     <a href="mailto:nileshbarela08@gmail.com">Email</a> |
-    <a href="https://instagram.com/hackifypro">Instagram</a> |
+    <a href="https://www.instagram.com/_https_nilesh08">Instagram</a> |
     <a href="https://www.linkedin.com/in/nilesh-barels08">LinkedIn</a>
   </footer>
 
