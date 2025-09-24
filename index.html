@@ -37,49 +37,47 @@
 
   <div class="scroll-area">
 
-    <!-- Portfolio (web only typically) -->
     <div class="link-card" onclick="openWeb('https://nilesh-delta.vercel.app/')">
       <i class="fas fa-user"></i>
       <span class="label">My Portfolio</span>
     </div>
 
-    <!-- GitHub: try github URI, fallback to web -->
     <div class="link-card" onclick="openAppFallback('github://user?username=Barela08','https://github.com/Barela08')">
       <i class="fab fa-github"></i>
       <span class="label">GitHub</span>
     </div>
 
-    <!-- Telegram personal -->
+    <!-- LinkedIn card added here -->
+    <div class="link-card" onclick="openAppFallback('linkedin://in/nilesh-barels08','https://www.linkedin.com/in/nilesh-barels08')">
+      <i class="fab fa-linkedin"></i>
+      <span class="label">LinkedIn</span>
+    </div>
+
     <div class="link-card" onclick="openAppFallback('tg://resolve?domain=byte_snatcher','https://t.me/byte_snatcher')">
       <i class="fab fa-telegram"></i>
       <span class="label">Nilesh Barela (Telegram)</span>
     </div>
 
-    <!-- Telegram channel -->
     <div class="link-card" onclick="openAppFallback('tg://resolve?domain=hackifyprocode','https://t.me/hackifyprocode')">
       <i class="fab fa-telegram"></i>
       <span class="label">HACKIFYPRO CODING (Telegram)</span>
     </div>
 
-    <!-- Instagram (use instagram deep link and Android intent fallback) -->
     <div class="link-card" onclick="openInstagram('_https_nilesh08','https://instagram.com/_https_nilesh08')">
       <i class="fab fa-instagram"></i>
       <span class="label">Nilesh Barela (Instagram)</span>
     </div>
 
-    <!-- YouTube (attempt app open using intent URI then fallback) -->
     <div class="link-card" onclick="openYouTube('@hackifypro','https://youtube.com/@hackifypro')">
       <i class="fab fa-youtube"></i>
       <span class="label">HackifyPro (YouTube)</span>
     </div>
 
-    <!-- HackifyPro Telegram group -->
     <div class="link-card" onclick="openAppFallback('tg://resolve?domain=hackifypro','https://t.me/hackifypro')">
       <i class="fab fa-telegram"></i>
       <span class="label">HackifyPro Telegram</span>
     </div>
 
-    <!-- HackifyPro Instagram handle -->
     <div class="link-card" onclick="openInstagram('hackifypro','https://instagram.com/hackifypro')">
       <i class="fab fa-instagram"></i>
       <span class="label">HackifyPro Instagram</span>
@@ -95,21 +93,9 @@
   </footer>
 
   <script>
-    // Try to open app URI, if it doesn't open within timeout, go to fallback web URL.
     function openAppFallback(appUri, webUrl) {
-      // For modern browsers on mobile, using location.href to app URI often triggers the app.
-      // We also try creating an iframe for older behaviour.
       var now = Date.now();
-      var opened = false;
-
-      // Try opening the custom URI
-      try {
-        window.location = appUri;
-      } catch (e) {
-        // ignore
-      }
-
-      // After 1200ms, if user still on page, redirect to web URL
+      try { window.location = appUri; } catch (e) {}
       setTimeout(function() {
         if (Date.now() - now < 2000) {
           window.location = webUrl;
@@ -122,41 +108,21 @@
     }
 
     function openInstagram(username, webUrl) {
-      // Try IG app deep link (iOS/Android). Fallback to Android intent and then web.
       var appUri = 'instagram://user?username=' + encodeURIComponent(username);
-      // android intent: opens app directly if installed (works in many Android browsers)
       var intentUri = 'intent://instagram.com/_u/' + encodeURIComponent(username) + '/#Intent;package=com.instagram.android;scheme=https;end';
-
-      // Try appUri first
       var now = Date.now();
       try { window.location = appUri; } catch(e) {}
-      setTimeout(function() {
-        // Try intent fallback (Android)
-        try { window.location = intentUri; } catch(e) {}
-      }, 600);
-
-      setTimeout(function() {
-        if (Date.now() - now < 2500) {
-          window.location = webUrl;
-        }
-      }, 1600);
+      setTimeout(function() { try { window.location = intentUri; } catch(e) {} }, 600);
+      setTimeout(function() { if (Date.now() - now < 2500) { window.location = webUrl; } }, 1600);
     }
 
     function openYouTube(handleOrId, webUrl) {
-      // Try vnd.youtube and intent. Many setups accept intent://www.youtube.com/...
       var appUri = 'vnd.youtube://www.youtube.com/' + encodeURIComponent(handleOrId);
       var intentUri = 'intent://www.youtube.com/' + encodeURIComponent(handleOrId) + '#Intent;package=com.google.android.youtube;scheme=https;end';
       var now = Date.now();
       try { window.location = appUri; } catch(e) {}
-      setTimeout(function() {
-        try { window.location = intentUri; } catch(e) {}
-      }, 600);
-
-      setTimeout(function() {
-        if (Date.now() - now < 2500) {
-          window.location = webUrl;
-        }
-      }, 1600);
+      setTimeout(function() { try { window.location = intentUri; } catch(e) {} }, 600);
+      setTimeout(function() { if (Date.now() - now < 2500) { window.location = webUrl; } }, 1600);
     }
   </script>
 
