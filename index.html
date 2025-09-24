@@ -3,105 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>HackifyPro | Nilesh Barela</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Important for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      height: 100%;
-      font-family: 'Courier New', monospace;
-      background-color: #0d0d0d;
-      color: #00ffcc;
-      overflow-x: hidden; /* only hide horizontal scroll */
-    }
-    header {
-      background: #111;
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 2px solid #00ffcc;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 10;
-    }
-    nav a {
-      color: #00ffcc;
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .scroll-area {
-      margin-top: 100px;
-      margin-bottom: 80px;
-      padding: 20px;
-      min-height: calc(100vh - 180px);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .link-card {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      border: 1px solid #00ffcc;
-      border-radius: 10px;
-      padding: 15px 20px;
-      margin: 12px 0;
-      width: 90%;
-      max-width: 500px;
-      transition: transform 0.3s;
-    }
-    .link-card:hover {
-      transform: scale(1.05);
-    }
-    .link-card i {
-      font-size: 26px;
-      margin-right: 15px;
-      color: #00ffcc;
-    }
-    .link-card a {
-      text-decoration: none;
-      color: #00ffcc;
-      font-size: 18px;
-      word-break: break-word;
-    }
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      border-top: 2px solid #00ffcc;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-    footer a {
-      color: #00ffcc;
-      margin: 0 8px;
-      text-decoration: none;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Courier New', monospace; background-color: #0d0d0d; color: #00ffcc; overflow-x: hidden; }
+    header { background: #111; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold; border-bottom: 2px solid #00ffcc; position: fixed; top: 0; width: 100%; z-index: 10; }
+    nav a { color: #00ffcc; margin: 0 10px; text-decoration: none; font-size: 16px; }
+    .scroll-area { margin-top: 100px; margin-bottom: 80px; padding: 20px; min-height: calc(100vh - 180px); overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+    .link-card { display: flex; align-items: center; background: #1a1a1a; border: 1px solid #00ffcc; border-radius: 10px; padding: 15px 20px; margin: 12px 0; width: 90%; max-width: 500px; transition: transform 0.3s; cursor: pointer; }
+    .link-card:hover { transform: scale(1.05); }
+    .link-card i { font-size: 26px; margin-right: 15px; color: #00ffcc; }
+    .link-card .label { text-decoration: none; color: #00ffcc; font-size: 18px; word-break: break-word; }
+    footer { background: #111; text-align: center; padding: 15px; font-size: 14px; border-top: 2px solid #00ffcc; position: fixed; bottom: 0; width: 100%; }
+    footer a { color: #00ffcc; margin: 0 8px; text-decoration: none; }
     @media (max-width: 600px) {
-      header {
-        font-size: 20px;
-        padding: 15px 5px;
-      }
-      .link-card {
-        padding: 12px 16px;
-      }
-      .link-card i {
-        font-size: 22px;
-      }
-      .link-card a {
-        font-size: 16px;
-      }
+      header { font-size: 20px; padding: 15px 5px; }
+      .link-card { padding: 12px 16px; }
+      .link-card i { font-size: 22px; }
+      .link-card .label { font-size: 16px; }
     }
   </style>
 </head>
@@ -117,42 +37,52 @@
 
   <div class="scroll-area">
 
-    <div class="link-card">
+    <!-- Portfolio (web only typically) -->
+    <div class="link-card" onclick="openWeb('https://nilesh-delta.vercel.app/')">
       <i class="fas fa-user"></i>
-      <a href="https://nilesh-delta.vercel.app/" target="_blank">My Portfolio</a>
+      <span class="label">My Portfolio</span>
     </div>
 
-    <div class="link-card">
+    <!-- GitHub: try github URI, fallback to web -->
+    <div class="link-card" onclick="openAppFallback('github://user?username=Barela08','https://github.com/Barela08')">
       <i class="fab fa-github"></i>
-      <a href="https://github.com/Barela08" target="_blank">GitHub</a>
+      <span class="label">GitHub</span>
     </div>
 
-    <div class="link-card">
+    <!-- Telegram personal -->
+    <div class="link-card" onclick="openAppFallback('tg://resolve?domain=byte_snatcher','https://t.me/byte_snatcher')">
       <i class="fab fa-telegram"></i>
-      <a href="https://t.me/byte_snatcher" target="_blank">Nilesh Barela</a>
+      <span class="label">Nilesh Barela (Telegram)</span>
     </div>
-<div class="link-card">
+
+    <!-- Telegram channel -->
+    <div class="link-card" onclick="openAppFallback('tg://resolve?domain=hackifyprocode','https://t.me/hackifyprocode')">
       <i class="fab fa-telegram"></i>
-      <a href="https://t.me/hackifyprocode" target="_blank">HACKIFYPRO CODING</a>
-</div>
-    <div class="link-card">
+      <span class="label">HACKIFYPRO CODING (Telegram)</span>
+    </div>
+
+    <!-- Instagram (use instagram deep link and Android intent fallback) -->
+    <div class="link-card" onclick="openInstagram('_https_nilesh08','https://instagram.com/_https_nilesh08')">
       <i class="fab fa-instagram"></i>
-      <a href="https://instagram.com/_https_nilesh08" target="_blank">Nilesh Barela</a>
+      <span class="label">Nilesh Barela (Instagram)</span>
     </div>
 
-    <div class="link-card">
+    <!-- YouTube (attempt app open using intent URI then fallback) -->
+    <div class="link-card" onclick="openYouTube('@hackifypro','https://youtube.com/@hackifypro')">
       <i class="fab fa-youtube"></i>
-      <a href="https://youtube.com/@hackifypro" target="_blank">HackifyPro</a>
+      <span class="label">HackifyPro (YouTube)</span>
     </div>
 
-    <div class="link-card">
+    <!-- HackifyPro Telegram group -->
+    <div class="link-card" onclick="openAppFallback('tg://resolve?domain=hackifypro','https://t.me/hackifypro')">
       <i class="fab fa-telegram"></i>
-      <a href="https://t.me/hackifypro" target="_blank">HackifyPro Telegram</a>
+      <span class="label">HackifyPro Telegram</span>
     </div>
 
-    <div class="link-card">
+    <!-- HackifyPro Instagram handle -->
+    <div class="link-card" onclick="openInstagram('hackifypro','https://instagram.com/hackifypro')">
       <i class="fab fa-instagram"></i>
-      <a href="https://instagram.com/hackifypro" target="_blank">HackifyPro Instagram</a>
+      <span class="label">HackifyPro Instagram</span>
     </div>
 
   </div>
@@ -163,6 +93,72 @@
     <a href="https://instagram.com/hackifypro">Instagram</a> |
     <a href="https://www.linkedin.com/in/nilesh-barels08">LinkedIn</a>
   </footer>
+
+  <script>
+    // Try to open app URI, if it doesn't open within timeout, go to fallback web URL.
+    function openAppFallback(appUri, webUrl) {
+      // For modern browsers on mobile, using location.href to app URI often triggers the app.
+      // We also try creating an iframe for older behaviour.
+      var now = Date.now();
+      var opened = false;
+
+      // Try opening the custom URI
+      try {
+        window.location = appUri;
+      } catch (e) {
+        // ignore
+      }
+
+      // After 1200ms, if user still on page, redirect to web URL
+      setTimeout(function() {
+        if (Date.now() - now < 2000) {
+          window.location = webUrl;
+        }
+      }, 1200);
+    }
+
+    function openWeb(webUrl) {
+      window.open(webUrl, '_blank');
+    }
+
+    function openInstagram(username, webUrl) {
+      // Try IG app deep link (iOS/Android). Fallback to Android intent and then web.
+      var appUri = 'instagram://user?username=' + encodeURIComponent(username);
+      // android intent: opens app directly if installed (works in many Android browsers)
+      var intentUri = 'intent://instagram.com/_u/' + encodeURIComponent(username) + '/#Intent;package=com.instagram.android;scheme=https;end';
+
+      // Try appUri first
+      var now = Date.now();
+      try { window.location = appUri; } catch(e) {}
+      setTimeout(function() {
+        // Try intent fallback (Android)
+        try { window.location = intentUri; } catch(e) {}
+      }, 600);
+
+      setTimeout(function() {
+        if (Date.now() - now < 2500) {
+          window.location = webUrl;
+        }
+      }, 1600);
+    }
+
+    function openYouTube(handleOrId, webUrl) {
+      // Try vnd.youtube and intent. Many setups accept intent://www.youtube.com/...
+      var appUri = 'vnd.youtube://www.youtube.com/' + encodeURIComponent(handleOrId);
+      var intentUri = 'intent://www.youtube.com/' + encodeURIComponent(handleOrId) + '#Intent;package=com.google.android.youtube;scheme=https;end';
+      var now = Date.now();
+      try { window.location = appUri; } catch(e) {}
+      setTimeout(function() {
+        try { window.location = intentUri; } catch(e) {}
+      }, 600);
+
+      setTimeout(function() {
+        if (Date.now() - now < 2500) {
+          window.location = webUrl;
+        }
+      }, 1600);
+    }
+  </script>
 
 </body>
 </html>
